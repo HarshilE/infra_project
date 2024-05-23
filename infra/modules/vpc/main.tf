@@ -24,8 +24,11 @@ resource "aws_subnet" "public" {
   count                   = length(var.public_subnets)
   vpc_id                  = aws_vpc.main.id
   cidr_block              = var.public_subnets[count.index]
-  #availability_zone       = var.availability_zone_1
+  availability_zone       = var.availability_zone
   map_public_ip_on_launch = true
+  tags = {
+    Name = "${var.vpc_name}-public-subnet"
+  }
 }
 
 #AWS private subnet
@@ -33,8 +36,11 @@ resource "aws_subnet" "public" {
 resource "aws_subnet" "private" {
   count      = length(var.private_subnets)
   vpc_id     = aws_vpc.main.id
-  #availability_zone       = var.availability_zone_1
+  availability_zone       = var.availability_zone
   cidr_block = var.private_subnets[count.index]
+  tags = {
+    Name = "${var.vpc_name}-private-subnet"
+  }
 }
 # AWS NAT gateways
 #====================================================
@@ -90,6 +96,23 @@ resource "aws_route_table_association" "pvt-sub-assoc" {
   route_table_id = aws_route_table.pvt-rt-1.id
 }
 
+# Network ACL
+resource "aws_network_acl" "main" {
+  vpc_id = aws_vpc.main.id
+
+  tags = {
+    Name = "${var.vpc_name}-network-acl"
+  }
+}
+
+# Security Group for instances in the private subnet
+resource "aws_security_group" "private_sg" {
+  vpc_id = aws_vpc.main.id
+
+  tags = {
+    Name = "${var.vpc_name}-private-sg"
+  }
+}
 
 /*output "vpc_id" {
   value = aws_vpc.main.id

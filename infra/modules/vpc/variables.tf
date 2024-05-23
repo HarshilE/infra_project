@@ -16,3 +16,8 @@ variable "private_subnets" {
   description = "A list of private subnet CIDR blocks"
   type        = list(string)
 }
+
+variable "availability_zone" {
+  description = "availabiliy zone of the subnets"
+}
+
