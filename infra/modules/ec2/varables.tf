@@ -1,62 +1,28 @@
-variable "aws_region" {
-    description = "Region of AWS"
-    default = "ap-south-1"
-    type = string
-}
-variable "vpc_cidr" {
-    description = "VPC cidr range"
-    type = string
-    default = "10.20.30.76/16"
-}
-variable "vpc_name" {
-  description = "Name of the VPC"
-  default = "User_vpc/ famo-money"
-  type        = string
-}
-variable "public_subnets" {
-    description = "A list of public subnet CIDR blocks"
-    type = list(string)
-    default = ["10.30.20.32/24", "10.30.20.32/24"]
-}
-variable "private_subnets" {
-  description = "A list of private subnet CIDR blocks"
-  type        = list(string)
-  default = ["10.10.20.32/24", "10.20.20.32/24"]
-}
-variable "availability_zone" {
-  description = "availablity of the project"
-  type = string
-  default = "ap-south-1a"
-}
-
-##################################################################
-#ec2 variables
 # modules/ec2/variables.tf
 
-# root variables.tf
-
-variable "region" {
-  description = "The AWS region to create resources in"
+variable "vpc_id" {
+  description = "VPC ID where the EC2 instance will be deployed"
   type        = string
-  default     = "us-west-2"
+}
+
+variable "subnet_id" {
+  description = "Subnet ID where the EC2 instance will be deployed"
+  type        = string
 }
 
 variable "ami_id" {
   description = "AMI ID for the EC2 instance"
   type        = string
-  default = "ami-943884343"
 }
 
 variable "instance_type" {
   description = "Instance type for the EC2 instance"
   type        = string
-  default = "t2.micro"
 }
 
 variable "key_name" {
   description = "Key name for SSH access"
   type        = string
-  default = "c2-key"
 }
 
 variable "public_key" {
@@ -88,6 +54,11 @@ variable "placement_group_strategy" {
 
 variable "dedicated_host_instance_type" {
   description = "Instance type for the dedicated host"
+  type        = string
+}
+
+variable "availability_zone" {
+  description = "Availability zone for the subnets and resources"
   type        = string
 }
 
