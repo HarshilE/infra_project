@@ -27,4 +27,15 @@ output "eip" {
   value       = aws_eip.ec2_eip.public_ip
 }
 
+#RDS outputs
+#======================================================================
 
+output "rds_instance_endpoint" {
+  description = "Endpoint of the RDS instance"
+  value       = module.rds.rds_instance_endpoint
+}
+
+output "rds_instance_id" {
+  description = "ID of the RDS instance"
+  value       = module.rds.rds_instance_id
+}

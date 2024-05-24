@@ -1,4 +1,3 @@
-# modules/ec2/main.tf
 
 # Security Group for EC2 instances
 resource "aws_security_group" "ec2_sg" {
@@ -69,7 +68,6 @@ resource "aws_ec2_host" "ec2_dedicated_host" {
 
 # Elastic IP
 resource "aws_eip" "ec2_eip" {
-  vpc = true
 
   tags = {
     Name = "${var.ec2_name}-eip"
