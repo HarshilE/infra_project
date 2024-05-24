@@ -1,4 +1,3 @@
-# modules/rds/main.tf
 
 # Security Group for RDS instance
 resource "aws_security_group" "rds_sg" {
