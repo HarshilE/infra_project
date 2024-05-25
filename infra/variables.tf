@@ -214,3 +214,28 @@ variable "allowed_cidr_blocks" {
   type        = list(string)
   default     = ["0.0.0.0/0"]
 }
+
+####################################################################################################################
+#S3 variables
+#====================================================================================================================
+
+variable "region" {
+  description = "The AWS region to create resources in"
+  type        = string
+  default     = "us-west-2"
+}
+
+variable "general_purpose_bucket_name" {
+  description = "Name for the general purpose S3 bucket"
+  type        = string
+}
+
+variable "directory_bucket_name" {
+  description = "Name for the directory S3 bucket"
+  type        = string
+}
+
+variable "environment" {
+  description = "The environment in which the resources are deployed (e.g., dev, prod)"
+  type        = string
+}

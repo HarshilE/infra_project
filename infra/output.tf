@@ -39,3 +39,16 @@ output "rds_instance_id" {
   description = "ID of the RDS instance"
   value       = module.rds.rds_instance_id
 }
+
+#S3 outputs
+#=========================================================================
+
+output "general_purpose_bucket_arn" {
+  description = "ARN of the general purpose S3 bucket"
+  value       = module.s3.general_purpose_bucket_arn
+}
+
+output "directory_bucket_arn" {
+  description = "ARN of the directory S3 bucket"
+  value       = module.s3.directory_bucket_arn
+}

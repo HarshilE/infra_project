@@ -61,3 +61,17 @@ module "RDS" {
   allowed_cidr_blocks     = var.allowed_cidr_blocks
 }
 
+# Call the S3 module
+#====================================================
+provider "aws" {
+  region = var.region
+}
+
+# Call the S3 module
+module "s3" {
+  source = "./modules/s3"
+
+  general_purpose_bucket_name = var.general_purpose_bucket_name
+  directory_bucket_name       = var.directory_bucket_name
+  environment                 = var.environment
+}
